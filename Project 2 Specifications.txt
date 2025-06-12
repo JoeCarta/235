@@ -1,0 +1,297 @@
+﻿Project 2: Beasts, Banshees, and Bags 
+Due Date: June 12th, 2025 (11:59 PM) 
+Project Guidelines: 
+If there are questions about how to format your project, please refer to the “Project Guidelines” PDF attached to the message concerning “Project 1”. If there are any other questions, feel free to email either one of us at 
+KAZI.MANSHA45@myhunter.cuny.edu or 
+meheraan.khan66@myhunter.cuny.edu. 
+Project Task: 
+Great job on your work creating the catalog. Your contributions have greatly expanded the archives of Wizard City’s library. However, Marleybone is now overwhelmed by the vast amount of creature data that you have collected. Clancy Pembroke, curator of Marleybone’s Royal Museum, urgently requires a magical system to efficiently organize and store the data, specifically on the three most common creatures from the catalog, Banshees, Firecats, and Cat Thugs. As well as this, Pembroke wants us to organize all of these creature files that we created and, as he doesn’t really care about how we organize, we are going to create a MagicalBag to store them all. Good luck wizards! 
+For a more detailed description of what is being done: 
+● You will be utilizing the code that you wrote for Project 1. If you did not do Project 1 completely I will be posting a link to a GitHub containing the correct code. 
+● You will create three new classes that are derived from the Creature class (Creature class will be your base class).
+○ Banshee 
+○ Firecat 
+○ CatThug 
+● You will also be creating your MagicalBag as an ADT. 
+○ This can be implemented in many ways but I would prefer if you did it using the implementation we discussed in class. 
+○ This is a template class, so when you test, initialize your MagicalBag for all of your different creatures!
+Banshee Class: 
+Data Members: 
+//The spectral aura color of the Banshee (enum) 
+//Aura {RED, BLUE, GRAY, GREEN} 
+Aura spectralAura_ 
+//The decibel level of the Banshee’s scream 
+int screamVolume_ 
+//Flag that indicates if the Banshee can induce fear 
+bool fearInducing_ 
+Member Functions: 
+/** 
+Default constructor. 
+Default-initializes all private members. 
+Default Banshee category: UNDEAD 
+Default Banshee school: DEATH 
+Default Banshee aura: RED 
+Default Banshee scream volume: 1 
+Booleans are default-initialized to False 
+*/ 
+Banshee() 
+/** 
+Parameterized constructor. 
+@param: The name of the Banshee (a string) 
+@param: The category of the Banshee (a Category enum) with a default value UNDEAD
+@param: The school of the Banshee (a School enum) with a default value DEATH 
+@param: The health of the Banshee (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: The level of the Banshee (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: The hostility of the Banshee (a boolean) with default value of False 
+@param: The spectral aura of the Banshee (an Aura enum) with a default value RED 
+@param: The decibel level of the Banshee (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: A flag indicating whether the Banshee can induce fear, with default value False 
+*/ 
+Banshee(const std::string& name, Category category, School school, int health, int level, bool isHostile, Aura spectralAura, int screamVolume, bool fearInducing) 
+/** 
+@param: The aura of the Banshee (an enum) 
+@post: Sets the Banshee’s aura to the value of the parameter 
+*/ 
+void setAura(const Aura& spectralAura) 
+/** 
+@return: The aura of the Banshee (in string form) 
+*/ 
+std::string getAura() const 
+/** 
+@param: An integer that represents the Banshee’s decibel level @pre: Parameter must be greater than 0, if not, do nothing 
+@post: Sets the scream volume private member to the value of the parameter @return: true if the scream volume was set, false otherwise
+*/ 
+bool setScreamVolume(const int& screamVolume) 
+/** 
+@return: The scream volume of the Banshee 
+*/ 
+int getScreamVolume() const 
+/** 
+@param: A boolean value of whether or not the Banshee is fear inducing @post: Sets the fear inducing flag to the value of the parameter */ 
+void setFearInducing(const bool& fearInducing) 
+/** 
+@return: true if the Banshee is fear inducing, false otherwise 
+Note: This is still an accessor function and must follow the same conventions as all accessor functions even if it not called getFearInducing() */ 
+bool isFearInducing() const 
+/** 
+@post: Displays Banshee data in the form: 
+“[NAME]\n 
+Category: [CATEGORY]\n 
+School: [SCHOOL]\n 
+Aura Color: [AURA]\n 
+Scream Level: [SCREAM LEVEL]\n 
+Health: [HEALTH]\n 
+Level: [LEVEL]\n 
+Fear Inducing: [TRUE/FALSE]\n 
+Hostile: [TRUE/FALSE]” 
+*/ 
+void display() const
+/** 
+@post: Checks to see if two banshees are equal 
+@post: Checks names, aura color, and fear inducing qualities */ 
+friend bool operator==(const Banshee& banshee1, const Banshee& banshee2)
+Firecat Class: 
+Data Members: 
+//The flame color of the Firecat (enum) 
+//FlameColor {RED, ORANGE, BLUE, WHITE} 
+FlameColor flameColor_ 
+//The flame intensity level of the Firecat’s flames 
+int flameIntensity_ 
+//Flag that indicates if the Firecat is an arsonist 
+bool arsonist_ 
+Member Functions: 
+/** 
+Default constructor. 
+Default-initializes all private members. 
+Default Firecat category: ANIMAL 
+Default Firecat school: FIRE 
+Default Firecat flame color: ORANGE 
+Default Firecat flame intensity: 1 
+Booleans are default-initialized to False 
+*/ 
+Firecat() 
+/** 
+Parameterized constructor. 
+@param: The name of the Firecat (a string) 
+@param: The category of the Firecat (a Category enum) with a default value ANIMAL
+@param: The school of the Firecat (a School enum) with a default value FIRE 
+@param: The health of the Firecat (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: The level of the Firecat (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: The hostility of the Firecat (a boolean) with default value of False @param: The flame color of the Firecat (an FlameColor enum) with a default value ORANGE 
+@param: The flame intensity of the Firecat (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: A flag indicating whether the Firecat is an arsonist, with default value False 
+*/ 
+Firecat(const std::string& name, Category category, School school, int health, int level, bool isHostile, FlameColor flameColor_, int flameIntensity, bool arsonist) 
+/** 
+@param: The flame color of the Firecat (an enum) 
+@post: Sets the Firecat’s flame color to the value of the parameter */ 
+void setFlameColor(const FlameColor& flameColor) 
+/** 
+@return: The flame color of the Firecat (in string form) 
+*/ 
+std::string getFlameColor() const 
+/** 
+@param: An integer that represents the Firecat’s flame intensity @pre: Parameter must be greater than 0, if not, do nothing 
+@post: Sets the flame intensity private member to the value of the parameter @return: true if the flame intensity was set, false otherwise 
+*/
+bool setFlameIntensity(const int& flameIntensity) 
+/** 
+@return: The flame intensity of the Firecat 
+*/ 
+int getFlameIntensity() const 
+/** 
+@param: A boolean value of whether or not the Firecat is an arsonist @post: Sets the arsonist flag to the value of the parameter 
+*/ 
+void setArsonist(const bool& arsonist) 
+/** 
+@return: true if the Firecat is an arsonist, false otherwise 
+Note: This is still an accessor function and must follow the same conventions as all accessor functions even if it not called getArsonist() */ 
+bool isArsonist() const 
+/** 
+@post: Displays Firecat data in the form: 
+“[NAME]\n 
+Category: [CATEGORY]\n 
+School: [SCHOOL]\n 
+Flame Color: [FLAME COLOR]\n 
+Flame Intensity: [FLAME INTENSITY]\n 
+Health: [HEALTH]\n 
+Level: [LEVEL]\n 
+Arsonist: [TRUE/FALSE]\n 
+Hostile: [TRUE/FALSE]” 
+*/ 
+void display() const;
+/** 
+@post: Checks to see if two firecats are equal 
+@post: Checks names, flame color, and if they are both arsonists */ 
+friend bool operator==(const Firecat& firecat1, const Firecat& firecat2)
+CatThug Class: 
+Data Members: 
+//The weapons the Cat Thug carries 
+vector<Weapon> weapons_ 
+//The rank of the Cat Thug (enum) 
+//Notoriety {ROOKIE, THIEF, ENFORCER, MOB_BOSS} Notoriety notorietyLevel_ 
+//Flag that indicates if the Cat Thug is currently wanted by the authorities bool isWanted_ 
+Public Struct: 
+/** 
+A struct representing weapons carried by the CatThug 
+The name of the weapon (a string) 
+The amount of damage the weapon does (an integer) 
+A flag indicating whether the weapon is ranged or not 
+*/ 
+Weapon 
+Member Functions: 
+/** 
+Default constructor. 
+Default-initializes all private members. 
+Default Cat Thug category: HUMANOID 
+Default Cat Thug school: MYTH 
+Default Cat Thug weapons: {} 
+Default Cat Thug notoriety: ROOKIE
+Booleans are default-initialized to False 
+*/ 
+CatThug() 
+/** 
+Parameterized constructor. 
+@param: The name of the Cat Thug (a string) 
+@param: The category of the Cat Thug (a Category enum) with a default value HUMANOID 
+@param: The school of the Cat Thug (a School enum) with a default value MYTH 
+@param: The health of the Cat Thug (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: The level of the Cat Thug (an integer) with default value 1 if not provided, or if the value provided is 0 or negative 
+@param: The hostility of the Cat Thug (a boolean) with default value of False 
+@param: The weapons of the Cat Thug (a vector of Weapons) with a default value {} 
+@param: The notoriety of the Cat Thug (a Notoriety enum) with default value ROOKIE 
+@param: A flag indicating whether the Cat Thug is wanted, with default value False 
+*/ 
+CatThug(const std::string& name, Category category, School school, int health, int level, bool isHostile, vector<Weapon> weapons, Notoriety notoriety, bool isWanted) 
+/** 
+@param: The weapons of a Cat Thug 
+@post: Sets the Cat Thug’s weapons to the value of the parameter */ 
+void setWeapons(const vector<Weapon>& weapons) 
+/**
+@return: The weapons (a vector of Weapon structs) 
+*/ 
+std::vector<Weapon> getWeapons() const 
+/** 
+@param: A weapon to be added to the vector 
+@post: Adds the weapon to the vector only if the weapon does not exist in the vector 
+@post: if weapon exists, update the damage of the weapon in the vector with the higher damage number 
+@return: true if weapon was added, false otherwise 
+Hint: bat and BAT are the same weapon 
+*/ 
+bool addWeapon(const Weapon& weapon) 
+/** 
+@param: A weapon to be removed from the vector 
+@post: Removes the weapon from the vector only if the weapon exists @return: true if weapon was removed, false otherwise 
+Hint: bat and BAT are the same weapon 
+*/ 
+bool removeWeapon(const Weapon& weapon) 
+/** 
+@param: The notoriety of the Cat Thug (an enum) 
+@post: Sets the Cat Thug’s notoriety to the value of the parameter */ 
+void setNotoriety(const Notoriety& notoriety) 
+/** 
+@return: The notoriety of the Cat Thug (in string form) 
+*/ 
+std::string getNotoriety() const
+/** 
+@param: A boolean value of whether or not the Cat Thug is wanted by the authorities 
+@post: Sets the is wanted flag to the value of the parameter 
+*/ 
+void setIsWanted(const bool& isWanted) 
+/** 
+@return: true if the Cat Thug is wanted, false otherwise 
+Note: This is still an accessor function and must follow the same conventions as all accessor functions even if it not called getIsWanted() */ 
+bool isWanted() const 
+/** 
+@post: Displays Cat Thug data in the form: 
+“[NAME]\n 
+Category: [CATEGORY]\n 
+School: [SCHOOL]\n 
+Weapons: [WEAPON NAME]: [DAMAGE], [RANGED/NOT RANGED]\n Notoriety: [NOTORIETY]\n 
+Health: [HEALTH]\n 
+Level: [LEVEL]\n 
+Is Wanted: [TRUE/FALSE]\n 
+Hostile: [TRUE/FALSE]” 
+*/ 
+void display() const; 
+/** 
+@post: Checks to see if two cat thugs are equal 
+@post: Checks names, notoriety, and is wanted 
+*/ 
+friend bool operator==(const CatThug& catThug1, const CatThug& catThug2)
+MagicalBag Class: 
+Protected Data Members: 
+//Max size of items_ at 100 
+Static const int DEFAULT_CAPACITY 
+//Array of bag items 
+T items_ 
+//Current count of bag items 
+int item_count_ 
+Member Functions: 
+/** 
+Default Constructor 
+*/ 
+MagicalBag() 
+/** 
+@return: the current number of items 
+*/ 
+int getCurrentSize() const 
+/** 
+@reutrn: true if our bag is empty, false otherwise */ 
+bool isEmpty() const
+/** 
+@post: If entry exists in bag, do nothing 
+@return: true if newEntry was successfully added to our array, false otherwise 
+*/ 
+bool add(const T& newEntry) 
+/** 
+@return: true if anEntry was successfully removed from our array, false otherwise 
+*/ 
+bool remove(const T& anEntry) 
+/** 
+@post: clears bag 
+*/ 
+void clear() 
+/** 
+@return: true if anEntry is found in our array, false otherwise */ 
+bool contains()

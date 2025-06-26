@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Galilean Moons</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+ body { background-color: black; color: white; font-family: Arial, sans-serif; }
+ #plot { width: 600px; height: 600px; margin: auto; }
+</style>
+</head>
+<body>
+<h2 style="text-align:center;">Galilean Moons – NYC</h2>
+<div id="plot"></div>
+<script>
+fetch('moons.json')
+  .then(resp => resp.json())
+  .then(data => {
+    const moonNames = Object.keys(data.moons);
+    const x = [];
+    const y = [];
+    const text = [];
+    const colors = [];
+
+    moonNames.forEach(name => {
+      const m = data.moons[name];
+      x.push(m.dra);
+      y.push(m.ddec);
+      text.push(`${name} (${m.alt > 0 ? '↑' : '↓'})`);
+      colors.push(m.alt > 0 ? 'white' : 'gray');
+    });
+
+    const trace = {
+      x: x,
+      y: y,
+      mode: 'markers+text',
+      text: text,
+      textposition: 'top center',
+      marker: { color: colors, size: 12 }
+    };
+
+    const jupiter = {
+      x: [0],
+      y: [0],
+      mode: 'markers+text',
+      text: ['Jupiter'],
+      textposition: 'top center',
+      marker: { color: 'orange', size: 30 }
+    };
+
+    const layout = {
+      title: `Galilean Moons – NYC @ ${data.time_iso} UTC`,
+      xaxis: { title: '\u0394RA (arcsec)', zeroline: true, zerolinecolor: 'gray' },
+      yaxis: { title: '\u0394Dec (arcsec)', zeroline: true, zerolinecolor: 'gray', scaleanchor: 'x', scaleratio: 1 },
+      paper_bgcolor: 'black',
+      plot_bgcolor: 'black',
+      font: { color: 'white' }
+    };
+
+    Plotly.newPlot('plot', [trace, jupiter], layout);
+  });
+</script>
+</body>
+</html>
